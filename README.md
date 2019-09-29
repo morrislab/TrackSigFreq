@@ -1,4 +1,4 @@
-# TrackSig R package
+# R package for TrackSig, TrackSigFreq
 Morris Lab, University of Toronto. R package for TrackSig, TrackSigFreq. 
 
 To cite, please see https://www.biorxiv.org/content/10.1101/260471v3
