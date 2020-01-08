@@ -21,7 +21,7 @@ This package imports the following other R packages:
 - VariantAnnotation >= 1.20.3 (Bioconductor)
 
 # Load the package in R
-`devtools::install_github("harrig12/BCB430")`
+`devtools::install_github("morrislab/TrackSigFreq")`
 
 # Demo
 Using the example data provided in `extdata/`, the following code will plot the signature trajectory, and return the fitted mixture of signatures for each bin, the bins where changepoints were detected, and the ggplot object.
