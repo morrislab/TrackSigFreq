@@ -1,7 +1,7 @@
 ##fileformat=VCFv4.1
 ##INFO=<ID=t_alt_count,Number=1,Type=Integer,Description="Tumour alt count from mutect read filter if available">
 ##INFO=<ID=t_ref_count,Number=1,Type=Integer,Description="Tumour reference count from mutect read filter if available">
-#CHROM	POS		REF	ALT		FILTER	INFO
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
 chr3	134920639	.	C	G	.	.	t_ref_count=55;t_alt_count=54
 chr20	11380899	.	C	T	.	.	t_ref_count=40;t_alt_count=56
 chr2	213943163	.	C	T	.	.	t_ref_count=42;t_alt_count=59
