@@ -1,7 +1,6 @@
 # R package for TrackSig, TrackSigFreq
-Morris Lab, University of Toronto. R package for TrackSig, TrackSigFreq. 
+Morris Lab, University of Toronto. R package for [TrackSig](https://doi.org/10.1038/s41467-020-14352-7), and its extension [TrackSigFreq](https://doi.org/10.1142/9789811215636_0022). 
 
-To cite, please see https://www.biorxiv.org/content/10.1101/260471v3
 
 # Vignette 
 Coming soon
@@ -52,6 +51,11 @@ traj <- TrackSig(sampleID = "example", activeInSample = detectedSigs,
                  vcfFile = vcfFile, cnaFile = cnaFile, purity = purity)
 ```
 
+The function `TrackSig` has three available methods for segmentation, controlled by the parameter `scoreMethod`. These are: 
++ `Signature` (described in the TrackSig paper) 
++ `SigFreq` (described in the TrackSigFreq paper) 
++ `Frequency` (not explicitly described, but corresponds to the frequency likelihood in the TrackSigFreq paper). 
+
 3. Plot the trajectory. If we plot with non-linear x-axis, then we can use the funciton `addPhiHist()`
 
 ```r
@@ -64,6 +68,17 @@ addPhiHist(traj, nonLinPlot)
 
 ![img: example plotting output](inst/extdata/linPlot.png?raw=true "Example of signature trajectory plotted with TrackSig R package")
 ![img: example plotting output](inst/extdata/nonLinPlot.png?raw=true "Example of signature trajectory plotted with TrackSig R package")
+
+# To cite
+
+## TrackSig citation
+
+Rubanova, Y., Shi, R., Harrigan, C.F. et al. Reconstructing evolutionary trajectories of mutation signature activities in cancer using TrackSig. Nat Commun 11, 731 (2020). https://doi.org/10.1038/s41467-020-14352-7
+
+## TrackSigFreq citation
+
+Harrigan, C.F., Rubanova, Y., Morris, Q. & Selega, A. TrackSigFreq: subclonal reconstructions based on mutation signatures and allele frequencies. Pac Symp Biocomput 25, 238–249 (2020).https://doi.org/10.1142/9789811215636_0022
+
 
 
 # Note
