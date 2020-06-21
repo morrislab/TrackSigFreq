@@ -2,29 +2,45 @@
 % Please edit documentation in R/TrackSig.R
 \name{TrackSig}
 \alias{TrackSig}
-\title{\code{TrackSig} Take an input vcf file and annotation and generate the counts data.
-Create all plotting output that compute_signatures_for_all_examples does.}
+\title{Determine an evolutionary trajectory.}
 \usage{
-TrackSig(vcfFile, activeInSample, cnaFile = NULL, purity = NULL,
-  sampleID = NULL, referenceSignatures = alex,
-  scoreMethod = "SigFreq", binSize = 100, desiredMinSegLen = NULL,
-  refGenome = BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19)
+TrackSig(
+  vcfFile,
+  activeInSample,
+  cnaFile = NULL,
+  purity = 1,
+  sampleID = NULL,
+  referenceSignatures = TrackSig:::alex_merged,
+  scoreMethod = "SigFreq",
+  binSize = 100,
+  nCutoff = 10000,
+  desiredMinSegLen = 1,
+  refGenome = BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
+)
 }
 \arguments{
 \item{vcfFile}{path to variant calling format (vcf) file}
 
-\item{cnaFile}{path to copy number abberation (cna) file}
+\item{activeInSample}{list of signatures names to fit the exposures of. All listed signatures must be present in the referenceSignatures dataframe.}
+
+\item{cnaFile}{path to copy number abberation (cna) file. If not provided, all copy numbers default to 2.}
+
+\item{purity}{number between 0 and 1 of the percentage of cells in the sample that are cancerous}
 
 \item{sampleID}{name to call sample. If none provided, name will be automatically drawn from the provided vcf file name.}
 
-\item{purityFile}{path to sample purity file}
+\item{referenceSignatures}{dataframe containing definitions of mutational signatures.}
 
-\item{saveIntermediate}{boolean whether to save intermediate results (mutation types)
+\item{scoreMethod}{string to indicate what scoring method to apply when finding changepoints. Options are "Signature", "SigFreq" and "Frequency"}
 
+\item{binSize}{number of mutations per bin (default 100)}
 
-activeInSample is list used to subset referenceSignatures}
+\item{nCutoff}{maximum number of total mutations to consider (samples with more than nCutoff muations will be down-sampled)}
+
+\item{desiredMinSegLen}{minimum number of mutations to include in a PELT segment (the desiredMinSegLen will be overridden if there are too few for accurate scoring)}
+
+\item{refGenome}{BSgenome to use as reference}
 }
 \description{
-\code{TrackSig} Take an input vcf file and annotation and generate the counts data.
-Create all plotting output that compute_signatures_for_all_examples does.
+\code{TrackSig} will take an input VCF file and corresponding annotation, and determine an eveolutionary trajectory for the sample, based on changepoints found using the PELT segmentation algorithm.
 }

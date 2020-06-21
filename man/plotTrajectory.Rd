@@ -2,25 +2,26 @@
 % Please edit documentation in R/plotting.R
 \name{plotTrajectory}
 \alias{plotTrajectory}
-\title{\code{plotTrajectory}}
+\title{Plot the exolutionary trajectory of a tumour}
 \usage{
-plotTrajectory(mixtures, phis = NULL, changepoints = NULL,
-  linearX = T, anmac = T, ...)
+plotTrajectory(trajectory, linearX = F, anmac = F, show = T)
 }
 \arguments{
-\item{mixtures}{mixtures of mixtures output by TrackSig}
+\item{trajectory}{a list containing named elements "mixtures", "changepoints",
+and "binData". See @seealso \link{TrackSig}.}
 
-\item{phis}{list of mean phis corresponding to bins in mixtures matrix}
+\item{linearX}{logical whether to plot with a linearly spaced x-axis grid, or
+with binned phi values}
 
-\item{changepoints}{list of changepoints to mark on the trajectory plot}
+\item{anmac}{logical whether to plot x-axis restricted to ccf space, or use
+estimated average number of mutant alleles per cell (anmac)}
 
-\item{linearX}{logical whether to plot with a linearly spaced x-axis grid, or with ccf values}
-
-\item{anmac}{logical whether to plot x-axis restricted to ccf space, or use estimated average number of mutant alleles per cell (anmac)}
+\item{show}{logical whether to print the plot}
 }
 \value{
 ggplot object
 }
 \description{
-\code{plotTrajectory}
+For each bin in a set of signature mixtures, the mixture is plotted accross
+pseudo-time. Provided changepoints will be highlighted.
 }

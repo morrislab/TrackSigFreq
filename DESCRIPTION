@@ -1,7 +1,7 @@
 Package: TrackSig
 Type: Package
 Title: TrackSig - cancer evolutionary trajectory estimation
-Version: 0.1.0
+Version: 0.2.0
 Author: Cait Harrigan, implemented with reference to TrackSig by Yulia Rubanova
 Maintainer: Cait Harrigan <cait.harrigan@utoronto.ca>
 Description: TrackSig, to estimate the evolutionary trajectories of signatures
@@ -17,17 +17,25 @@ LazyData: true
 Imports:
     reshape2,
     ggplot2,
-    NMF,
     assertthat,
     BSgenome.Hsapiens.UCSC.hg19,
     GenomicRanges,
     Biostrings,
     SummarizedExperiment,
-    VariantAnnotation
+    VariantAnnotation,
+    grid,
+    progress,
+    cowplot,
+    rlang,
+    utils,
+    BSgenome,
+    GenomeInfoDb,
+    IRanges,
+    S4Vectors
 LinkingTo: 
 Suggests:
     testthat,
     knitr,
     rmarkdown
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr
