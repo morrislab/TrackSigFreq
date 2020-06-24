@@ -5,24 +5,10 @@ Morris Lab, University of Toronto. R package for [TrackSig](https://doi.org/10.1
 # Vignette 
 Coming soon
 
-# Dependencies 
-R >= 3.3.3
-
-This package imports the following other R packages:
-
-+ reshape2 >= 1.4.3 (CRAN)
-+ ggplot2 >= 3.2.0 (CRAN)
-+ NMF >= 0.21.0 (CRAN)
-+ assertthat >= 0.2.1 (CRAN)
-+ BSgenome.Hsapiens.UCSC.hg19 >= 1.4.0 (Bioconductor)
-+ GenomicRanges >= 1.26.4 (Bioconductor)
-+ Biostrings >= 2.42.1 (Bioconductor)
-+ SummarizedExperiment >= 1.4.0 (Bioconductor)
-+ VariantAnnotation >= 1.20.3 (Bioconductor)
-+ grid >= 3.3.3 (CRAN)
-+ progress >= 1.2.2 (CRAN)
-
 # Load the package in R
+
+Make sure you have a version of R >= 3.3.3. You can install the package using [`devtools`](https://cran.r-project.org/package=devtools). Some of TrackSig's dependencies are only available via [bioconductor](https://bioconductor.org/).
+
 `devtools::install_github("morrislab/TrackSigFreq")`
 
 # Demo
