@@ -96,8 +96,9 @@ linPlot <- linPlot + labs(title = "Example trajectory with linear x-axis")
 linPlot <- linPlot + theme(axis.text.x=element_text(angle=45, hjust=1))
 linPlot
 ```
+Cancer cell fraction should in theory never exceed 1. However, as described in [Tarabichi et. al (2021)](https://doi.org/10.1038/s41592-020-01013-2), "false-positive SNVs or inaccurate CNAs can cause spurious superclonal clusters (that is, those with CCF > 1)". There are cases where it is desirable to display these as average number of mutant alleles per cell (ANMAC), which is controlled via the argument `anmac`
 
-Because some bins
+Because each bin is equal size, they appear warped in terms of mutation density. `plotTrajectory()` takes argument `linearX` which decides which way to draw the x-axis: scaling bin size to the density of mutations within it, or not. 
 
 ```{r nonLinPlot, fig.width=7, fig.height=4}
 nonLinPlot <- plotTrajectory(traj, linearX = F, anmac = T) + labs(title = "Example trajectory with non-linear x-axis")
