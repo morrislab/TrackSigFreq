@@ -4,7 +4,7 @@ Morris Lab, University of Toronto. R package for [TrackSig](https://doi.org/10.1
 
 # Vignette 
 
-Vignette can be viewed with `vignette('TrackSig')` or see the [online vignette](https://morrislab.github.io/TrackSigFreq/).
+Vignette can be viewed with `vignette('TrackSig')` or see the [online vignette](https://morrislab.github.io/TrackSigFreq/index.html).
 
 
 # Load the package in R
