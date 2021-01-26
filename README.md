@@ -3,7 +3,9 @@ Morris Lab, University of Toronto. R package for [TrackSig](https://doi.org/10.1
 
 
 # Vignette 
-Coming soon
+
+Vignette can be viewed with `vignette('TrackSig')` or see the [online vignette]().
+
 
 # Load the package in R
 
@@ -12,6 +14,9 @@ Make sure you have a version of R >= 3.3.3. You can install the package using [`
 `devtools::install_github("morrislab/TrackSigFreq")`
 
 # Demo
+
+Treated in greater detail in the package vignette.
+
 Using the example data provided in `extdata/`, the following code will plot the signature trajectory, and return the fitted mixture of signatures for each bin, the bins where changepoints were detected, and the ggplot object.
 
 1. First, restrict the list of signatures to fit exposure for. This is recommended for improving speed by making the model smaller. Here, we choose a threshold of 5%, meaning that signatures with exposure under this across all timepoints will not be fit. 
@@ -69,4 +74,4 @@ Harrigan, C.F., Rubanova, Y., Morris, Q. & Selega, A. TrackSigFreq: subclonal re
 
 # Note
 
-Some users may have plotting issues with `TrackSig` if `ggplot2` is not explicitly loaded with `library(ggplot2)`. We are experiencing a bug that has been [previously described](https://github.com/tidyverse/ggplot2/issues/663) for `ggplot2`.
+Some users may have plotting issues with `TrackSig` if `ggplot2` is not explicitly loaded with `library(ggplot2)`. This may be related to a bug that has been [previously described](https://github.com/tidyverse/ggplot2/issues/663) for `ggplot2`.
