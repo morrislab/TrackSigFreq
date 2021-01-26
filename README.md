@@ -11,7 +11,7 @@ Vignette can be viewed with `vignette('TrackSig')` or see the [online vignette](
 
 Make sure you have a version of R >= 3.3.3. You can install the package using [`devtools`](https://cran.r-project.org/package=devtools). Some of TrackSig's dependencies are only available via [bioconductor](https://bioconductor.org/).
 
-`devtools::install_github("morrislab/TrackSigFreq")`
+`devtools::install_github("morrislab/TrackSigFreq", build_vignettes = TRUE)`
 
 # Demo
 
