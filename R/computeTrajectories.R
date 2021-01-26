@@ -234,8 +234,7 @@ fitMixturesInTimeline <- function(data, changepoints, alex.t, split_data_at_chan
 
 mixtureLL <- function(counts, composing_multinomials, mixtures, ...) {
   # replaces log_likelihood_mixture_multinomials
-  multinomial_vector <- rowSums(counts)
-  #multinomial_vector <- counts
+  multinomial_vector <- rowSums(as.matrix(counts))
 
   mutation_binary_table <- makeBinaryTable(multinomial_vector)
 
