@@ -143,14 +143,14 @@ addPhiHist <- function(trajectory, trajPlot, truncateStrategy = c("exclude", "st
 #'   with binned phi values
 #' @param anmac logical whether to plot x-axis restricted to ccf space, or use
 #'   estimated average number of mutant alleles per cell (anmac)
-#' @param show logical whether to print the plot
+#' @param show logical whether to print the plot as a side effect when called
 #' @return ggplot object
 #'
 #' @name plotTrajectory
 #' @import rlang
 #' @export
 
-plotTrajectory <- function(trajectory, linearX = F, anmac = F, show = T){
+plotTrajectory <- function(trajectory, linearX = F, anmac = F, show = F){
 
   if(!is.null(trajectory)){
     mixtures <- trajectory[["mixtures"]]

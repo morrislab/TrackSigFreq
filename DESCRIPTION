@@ -14,6 +14,7 @@ Description: TrackSig, to estimate the evolutionary trajectories of signatures
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+biocViews:
 Imports:
     reshape2,
     ggplot2,
@@ -37,5 +38,5 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
