@@ -4,7 +4,7 @@
 \alias{plotTrajectory}
 \title{Plot the exolutionary trajectory of a tumour}
 \usage{
-plotTrajectory(trajectory, linearX = F, anmac = F, show = T)
+plotTrajectory(trajectory, linearX = F, anmac = F, show = F)
 }
 \arguments{
 \item{trajectory}{a list containing named elements "mixtures", "changepoints",
@@ -16,7 +16,7 @@ with binned phi values}
 \item{anmac}{logical whether to plot x-axis restricted to ccf space, or use
 estimated average number of mutant alleles per cell (anmac)}
 
-\item{show}{logical whether to print the plot}
+\item{show}{logical whether to print the plot as a side effect when called}
 }
 \value{
 ggplot object
