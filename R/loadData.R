@@ -63,10 +63,12 @@ parseVcfFile <- function(vcfFile, cutoff = 10000, refGenome = BSgenome.Hsapiens.
   GenomeInfoDb::seqlevelsStyle(vcf) <- "UCSC"
 
   # remove variants with missing ref or alt counts (ri/vi)
-
+  vcf <- vcf[!is.na(VariantAnnotation::info(vcf)$t_alt_count) &
+             !is.na(VariantAnnotation::info(vcf)$t_ref_count)]
 
   # TODO: remove any duplicates
 
+  assertthat::assert_that(dim(vcf)[1] > 0, msg = "No variants with sufficient t_alt_count or t_ref_count info in VCF")
   assertthat::assert_that("t_alt_count" %in% rownames(VariantAnnotation::info(VariantAnnotation::header(vcf))),
                           msg = "Tumor alternate variant count \"t_alt_count\" was not found in the vcf header. Please check formatting\n")
   assertthat::assert_that("t_ref_count" %in% rownames(VariantAnnotation::info(VariantAnnotation::header(vcf))),
