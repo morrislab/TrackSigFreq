@@ -45,8 +45,7 @@ vcfToCounts <- function(vcfFile, cnaFile = NULL, purity = 1, binSize = 100,
   list[vcaf, countsPerBin] <- getBinCounts(vcaf, binSize, context, verbose)
 
   # clean up unecessary vcaf features
-  extras <- setdiff(colnames(VariantAnnotation::info(vcf)), c("t_alt_count", "t_ref_count", "cn"))
-  vcaf <- vcaf[,c(extras, "chr", "pos", "cn", "mutType", "alt", "phi", "qi", "bin")]
+  vcaf <- vcaf[,c("chr", "pos", "cn", "mutType", "alt", "phi", "qi", "bin")]
   rownames(vcaf) <- NULL
 
   return( list(vcaf = vcaf, countsPerBin = countsPerBin) )
@@ -59,11 +58,15 @@ vcfToCounts <- function(vcfFile, cnaFile = NULL, purity = 1, binSize = 100,
 
 parseVcfFile <- function(vcfFile, cutoff = 10000, refGenome = BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19){
 
-  vcf <- VariantAnnotation::readVcf(vcfFile, genome = GenomeInfoDb::providerVersion(refGenome))
+  # Use variant annotation to get just t_alt_count and t_ref_count
+  vcf <- VariantAnnotation::readVcf(vcfFile, genome = GenomeInfoDb::bsgenomeName(refGenome))
+  GenomeInfoDb::seqlevelsStyle(vcf) <- "UCSC"
+
+  # remove variants with missing ref or alt counts (ri/vi)
+
 
   # TODO: remove any duplicates
 
-  # TODO: remove samples with missing ref or alt counts (ri/vi)
   assertthat::assert_that("t_alt_count" %in% rownames(VariantAnnotation::info(VariantAnnotation::header(vcf))),
                           msg = "Tumor alternate variant count \"t_alt_count\" was not found in the vcf header. Please check formatting\n")
   assertthat::assert_that("t_ref_count" %in% rownames(VariantAnnotation::info(VariantAnnotation::header(vcf))),
@@ -344,6 +347,7 @@ getTrinuc <- function(vcaf, refGenome, verbose = F){
 ## @param binSize number of mutations per bin
 ## @param context trinucleotide combinations possible
 ## @return A data frame of summary statistics and mutation type counts for each bin.
+#' @importFrom magrittr "%>%"
 getBinCounts <- function(vcaf, binSize, context, verbose = F){
   # replaces make_hundreds.py script
 
@@ -360,11 +364,14 @@ getBinCounts <- function(vcaf, binSize, context, verbose = F){
 
   vcaf$bin <- c(rep(1:nFullBins, each = binSize), rep( (nFullBins + 1) , times = sizePartialBin))
 
-  # aggregate on bins
-  binCounts <- data.frame( row.names = 1:(nFullBins + (sizePartialBin != 0)) )
+  # get count of each mutation type for each bin
+  vcaf %>%
+    dplyr::mutate(cat = paste(.data$ref, .data$alt, .data$mutType, sep = "_")) %>%
+    dplyr::group_by(.data$bin, .data$cat) %>% dplyr::summarize(sum = sum(.data$bin)) %>%
+    tidyr::spread(cat, sum) -> binCounts
 
-  # counts for each bin
-  binCounts <- base::cbind(binCounts, stats::aggregate(paste(vcaf$ref, vcaf$alt, vcaf$mutType, sep = "_"), by = list(vcaf$bin), FUN = function(x){return(as.array(table(x)))})$x )
+  # replace NAs with 0
+  binCounts[is.na(binCounts)] <- 0
 
   # check that all mutation types have a count
   missingTypes <- setdiff(paste(context$V1, context$V2, context$V3, sep = "_"), names(binCounts))
