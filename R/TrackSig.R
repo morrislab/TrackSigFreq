@@ -84,7 +84,7 @@ TrackSig <- function(vcfFile,
 
   # input checking
 
-  assertthat::assert_that(grepl(".vcf$", vcfFile) | grepl(".txt$", vcfFile), msg = "Unsupported VCF file extension. Expected file type .vcf or .txt\n")
+  #assertthat::assert_that(grepl(".vcf$", vcfFile) | grepl(".txt$", vcfFile), msg = "Unsupported VCF file extension. Expected file type .vcf or .txt\n")
 
   if(missing(activeInSample)){
     assertthat::assert_that(scoreMethod == "Frequency", msg = "When scoreMethod is not equal to \"Frequency\", activeInSample must be provided.")
