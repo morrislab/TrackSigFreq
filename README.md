@@ -13,6 +13,11 @@ Make sure you have a version of R >= 3.3.3. You can install the package using [`
 
 `devtools::install_github("morrislab/TrackSigFreq", build_vignettes = TRUE)`
 
+# Input data
+
+Expected input is a vcf file, with INFO fields containing at minimum `t_alt_count` and `t_ref_count`, the counts of altered and reference reads respectively. 
+See [hts-specs](https://github.com/samtools/hts-specs) for vcf specification details. 
+
 # Demo
 
 Treated in greater detail in the package vignette.
