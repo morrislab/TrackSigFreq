@@ -17,6 +17,9 @@ LazyData: true
 biocViews:
 Imports:
     reshape2,
+    magrittr,
+    tidyr,
+    dplyr,
     ggplot2,
     assertthat,
     BSgenome.Hsapiens.UCSC.hg19,

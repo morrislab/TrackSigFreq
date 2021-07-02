@@ -115,7 +115,7 @@ fitMixturesEM <- function(counts, composing_multinomials, prior=NULL)
     class_given_data <- t(t(pDataGivenClass * pi) / p_x)
 
     # S-step: update mixtures
-    pi_new <- 1/nMut * rowSums(class_given_data)
+    pi_new <- 1/nMut * rowSums(as.matrix(class_given_data))
 
     if (sum(pi_new > 1) != 0) {
       stop("Mixture ratio is greater than 1")
@@ -206,7 +206,7 @@ fitMixturesInTimeline <- function(data, changepoints, alex.t, split_data_at_chan
     }
 
     # all counts should be present
-    assertthat::assert_that(all(rowSums(data) == rowSums(do.call(cbind,chunkSums))),
+    assertthat::assert_that(all(rowSums(as.matrix(data)) == rowSums(do.call(cbind,chunkSums))),
                             msg = "Timepoints lost in chunking\n")
 
 
@@ -215,7 +215,7 @@ fitMixturesInTimeline <- function(data, changepoints, alex.t, split_data_at_chan
     chunkSums <- lapply(slices, data, FUN = sumSlice)
 
     # all counts should be present
-    assertthat::assert_that(all(base::rowSums(data) == rowSums(do.call(cbind,chunkSums))),
+    assertthat::assert_that(all(base::rowSums(as.matrix(data)) == rowSums(do.call(cbind,chunkSums))),
                             msg = "Timepoints lost in chunking\n")
   }
 
